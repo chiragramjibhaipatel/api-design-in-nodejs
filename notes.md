@@ -37,3 +37,14 @@ module.exports = {
 
 Why we do this?
 exports = module.exports
+
+## Node.js -> Express
+
+Node has http library. using this library we can create a web server in node. But this is too much code and also error prone.
+It is better to use some library like expressjs to create a web server.
+
+There are some alternatives to express and some of the are build on top of express.
+Sailsjs
+Hapi
+koa
+StrongLoop
