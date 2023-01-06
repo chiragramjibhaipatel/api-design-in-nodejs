@@ -1,3 +1,5 @@
+## Node.js -> CommonJs
+
 While importing a module in node js file, we do not need to write './' prefix before the module name if that module is part of node or its installed in node_modules folder, and for rest of the modules(custom modules/files that we have created for the project), we need to add relative path before the module name.
 
 eg. 
@@ -11,3 +13,27 @@ for custome modules
 var myModule = require('./path/to/the/file')
 
 We do not have to write the file extension. It is default to ".js". It doesn't throw an error if we write it though.
+
+## Node.js -> Executing Node
+
+Node wraps each file in IIFE and also pass a few arguments to it
+  module
+  exports
+  __dirname
+  etc...
+  
+we can use exports as manu time in the file to export anything.
+eg. 
+exports.function1 = function(){}
+exports.function2 = function(){}
+exports.someVariable = "some variable"
+
+we can use module.exports only once in the file
+eg.
+module.exports = {
+  function1: ()=>{},
+  function2: ()=>{}
+}
+
+Why we do this?
+exports = module.exports
