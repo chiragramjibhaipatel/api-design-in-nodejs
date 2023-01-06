@@ -1,0 +1,24 @@
+{
+  "name": "api-design-in-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiragramjibhaipatel/api-design-in-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chiragramjibhaipatel/api-design-in-nodejs/issues"
+  },
+  "homepage": "https://github.com/chiragramjibhaipatel/api-design-in-nodejs#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

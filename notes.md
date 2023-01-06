@@ -48,3 +48,13 @@ Sailsjs
 Hapi
 koa
 StrongLoop
+
+
+## Node.js -> Using express
+
+some time we get 304 in the client, this is because client sends 'cache-control': 'max-age=0' header. the workaround for this can be found here 'cache-control': 'max-age=0'
+
+consider this url:
+client: /api/v1/get/:123
+endpoint: /api/v1/get/:id
+we can use path variable using req.params.id in the backend
