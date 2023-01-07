@@ -6,7 +6,10 @@ let todos = [];
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, '/index.html'), function (err){
+    if(err){
+
     res.status(500).send("Not Found");
+    }
   });
 })
 app.get("/todos", (req, res) => {
