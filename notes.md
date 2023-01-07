@@ -62,5 +62,11 @@ we can use path variable using req.params.id in the backend
 ## Node.js -> Exercise 1 Solution
 
 we can send a file using res.sendFile(file_path) 
-This will read the fullfile and then return that file to the client
+This will read the full file and then return that file to the client
 we can also add a callback function to handle the error and send appropriate response
+
+## Node.js -> Exercise 2 Solution
+
+we can use these middleware to handle post data in the incoming request
+app.use(express.json());
+app.use(express.urlencoded());

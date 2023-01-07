@@ -1,24 +1,80 @@
-var express = require("express");
-const path = require("path");
+const express = require("express");
 
-var app = express();
-let todos = [];
+const app = express();
+app.use(express.static('client'));
+app.use(express.json());
+app.use(express.urlencoded());
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'), function (err){
-    if(err){
-
-    res.status(500).send("Not Found");
-    }
-  });
-})
-app.get("/todos", (req, res) => {
-  //   sometimes we get 304 on client: more details here: https://stackoverflow.com/questions/18811286/nodejs-express-cache-and-304-status-code
-  //   res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-  //   res.header("Pragma", "no-cache");
-  //   res.header("Expires", 0);
-  res.send(todos);
+/*
+* "GET /lions": {
+*   "desc":"return all lions",
+*   "response": "200 application/json",
+*   "data": [{}, {}, {}]
+*  },
+*
+*  "GET /lions/:id": {
+*   "desc": "return one lion represented by its id",
+*   "response": "200 application/json",
+*   "data": {}
+*  },
+*
+*  "POST /lions": {
+*   "desc": "create and return new lion using the posted object as lion",
+*   "response": "201 application/json",
+*   "data": {}
+*  },
+*
+*  "PUT /lion/:id": {
+*   "desc": "updates and return the matching lion with the updated object",
+*   "response": "200 application/json",
+*   "data": {}
+*  },
+*
+* "DELETE /lions/:id": {
+*   "desc": "deletes and returns the matching lion",
+*   "response": "200 application/json",
+*   "data": {}
+* }
+*
+* lion object : {
+    name: name,
+    pride: pride,
+    age: age,
+    gender: gender
+  };
+* */
+let lions = [];
+let id = 0;
+app.get("/lions", (req, res) => {
+  res.json(lions);
 });
+
+app.post("/lions", (req, res) => {
+  lions.push({id: id++, ...req.body});
+  res.json(lions[lions.length-1]);
+});
+
+app.get("/lions/:id", (req, res) => {
+  console.log(req.params.id);
+  res.json(lions.filter(lion => lion.id == req.params.id));
+})
+
+app.put("/lions/:id", (req, res) => {
+  console.log(req.body);
+  lions = lions.map(lion => {
+    if (lion.id == req.params.id) {
+      lion = {...lion, ...req.body};
+    }
+    return lion;
+  });
+  res.json(lions);
+})
+
+app.delete("/lions/:id", (req,res) => {
+  lions = lions.filter(lion => lion.id != req.params.id);
+  res.json(lions);
+
+})
 
 app.listen(3000);
 console.log("listening on PORT 3000");
