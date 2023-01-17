@@ -70,3 +70,11 @@ we can also add a callback function to handle the error and send appropriate res
 we can use these middleware to handle post data in the incoming request
 app.use(express.json());
 app.use(express.urlencoded());
+
+## Middleware -> Types of Middleware
+
+application-level
+router-level
+error-handling
+built-in
+third-party

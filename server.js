@@ -46,6 +46,8 @@ app.use(express.urlencoded());
 let lions = [];
 let id = 0;
 app.get("/lions", (req, res) => {
+  throw new Error("My new erroe");
+  throw new Error("My new erroe");
   res.json(lions);
 });
 
@@ -74,7 +76,13 @@ app.delete("/lions/:id", (req,res) => {
   lions = lions.filter(lion => lion.id != req.params.id);
   res.json(lions);
 
-})
+});
+
+app.use((err, req, res, next) => {
+  console.log("Error in: ", req.method, req.url);
+  console.log(err);
+  res.json("Error");
+});
 
 app.listen(3000);
 console.log("listening on PORT 3000");
