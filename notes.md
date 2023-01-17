@@ -78,3 +78,9 @@ router-level
 error-handling
 built-in
 third-party
+
+## Middleware -> Middleware examples
+
+We can create our own middleware
+In most of the cases a middleware is a higher level function that takes some options and return a new function, the function that is returned is our actual middleware
+we can pass an array of middleware to any route as a second argument

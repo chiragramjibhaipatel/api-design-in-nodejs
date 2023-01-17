@@ -43,10 +43,25 @@ app.use(express.urlencoded());
     gender: gender
   };
 * */
+
+let customMiddleware = function (opts){
+  return function (req, res, next) {
+    console.log("From custom middleware");
+    next();
+  }
+}
+
+let anotherCustomMiddleware = function (opts){
+  return function (req, res, next) {
+    console.log("From another custom middleware");
+    next();
+  }
+}
+
+
 let lions = [];
 let id = 0;
-app.get("/lions", (req, res) => {
-  throw new Error("My new erroe");
+app.get("/lions",customMiddleware(), (req, res) => {
   throw new Error("My new erroe");
   res.json(lions);
 });
@@ -56,7 +71,7 @@ app.post("/lions", (req, res) => {
   res.json(lions[lions.length-1]);
 });
 
-app.get("/lions/:id", (req, res) => {
+app.get("/lions/:id",[customMiddleware(), anotherCustomMiddleware()], (req, res) => {
   console.log(req.params.id);
   res.json(lions.filter(lion => lion.id == req.params.id));
 })
